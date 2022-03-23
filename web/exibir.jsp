@@ -1,100 +1,159 @@
+<%@page import="java.sql.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String esco = "";
-    String sexo = "";
-    String data = "";
-    String doc1 = "";
-    String doc = "";
-    String nome = "";
-    if (request.getParameter("nome") != null) { //requisição
-        nome = String.valueOf(
-                request.getParameter("nome"));
-        if (request.getParameter("documento") != null) { //requisição
-            doc = String.valueOf(
-                    request.getParameter("documento"));
-            if (request.getParameter("documento1") != null) { //requisição
-                doc1 = String.valueOf(
-                        request.getParameter("documento1"));
-                if (request.getParameter("dtnascimento") != null) { //requisição
-                    data = String.valueOf(
-                            request.getParameter("dtnascimento"));
-                    if (request.getParameter("sexo") != null) { //requisição
-                        sexo = String.valueOf(
-                                request.getParameter("sexo"));
-                        if (request.getParameter("escolaridade") != null) { //requisição
-                            esco = String.valueOf(
-                                    request.getParameter("escolaridade"));
-                        }
-                    }
-                }
-            }
-        }
-    }
+    String nome = request.getParameter("nome");
+    String doc = request.getParameter("documento");
+    String doc1 = request.getParameter("documento1");
+    Date data = Date.valueOf(request.getParameter("datanascimento"));
+    String sex = request.getParameter("sexo");
+    String esco = request.getParameter("escolaridade");
+    String tele = request.getParameter("telefone");
+    String email = request.getParameter("email");
+    String cep = request.getParameter("cep");
+    String logra = request.getParameter("logra");
+    String numero = request.getParameter("numero");
+    String bairro = request.getParameter("bairro");
+    String cidade = request.getParameter("cidade");
+    String estado = request.getParameter("estado");
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Exibir</title>
+        <title>Cadastro</title>
     </head>
     <body>
+        <form action="exibir.jsp" method="GET"></form>
         <h1>
-            Exibir
+            Cadastro
         </h1>
+        <hr size="5">
         <table border="1" cellspacing="0" cellpadding="5">
             <tr>
-                <td colspan="3">
-                    <form action="exibir.jsp" method="GET">
-                        <label for="txtAluno">Nome Completo:</label>
-                        <%
+                <td colspan="2">
+                    <label for="txtAluno">Nome Completo:<br></label>
+                        <%                            
                             out.print(nome);
                         %>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <form action="exibir.jsp" method="GET">
-                        <label for="txtDocumento">Documento:<br></label>
-                            <%
-                                out.print(doc);
-                            %>
+                    <label for="txtDocumento">Documento:<br></label>
+                        <%
+                            out.print(doc);
+                        %>
                 </td>
                 <td>
-                    <form action="exibir.jsp" method="GET">
-                        <label>Tipo de Documento:</label><br>
-                        <%
-                            out.print(doc1);
-                        %>
-                        </td>
+                    <table>
+                        <tr>
+                            <td colspan="3">
+                                <label for="">Tipo de Documento:</label>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
-                                <form action="exibir.jsp" method="GET">
-                                    <label for="txtdtnascimento">Data de Nascimento:</label>
-                                    <%
-                                        out.print(data);
-                                    %>
+                                <%
+                                    out.print(doc1 + ": " + doc);
+                                %>      
                             </td>
-                            <td>
-                                <form action="exibir.jsp" method="GET">
-                                    <label>Sexo:</label><br>
-                                    <%
-                                        out.print(sexo);
-                                    %>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <form action="exibir.jsp" method="GET">
-                                                <label for="sltEscolaridade">Escolaridade:</label>
-                                                <%
-                                                    out.print(esco);
-                                                %>
-                                        </td>
-                                        <td colspan="4" style="text-align: center;">
-                                            <input type="submit" value="Cadastrar"/>
-                                        </td>
-                                    </tr>
                         </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="txtdtnascimento">Data de Nascimento:<br></label>
+                        <%
+                            out.print(data);
+                        %>
+
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td colspan="3">
+                                <label>Sexo:</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <%
+                                    out.print(sex);
+                                %>
+                            </td>
+                        </tr>
+                    </table>
+            </tr>
+            <tr>
+                <td>
+                    <label for="sltEscolaridade">Escolaridade:</label><br>
+                    <%
+                        out.print(esco);
+                    %>
+
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="txtDDD">ddd/telefone:</label><br>
+                                <%
+                                    out.print(tele);
+                                %>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <label for="sltEmail">Email:</label><br>
+                    <%
+                        out.print(email);
+                    %>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <fieldset>
+                        <legend>Endereço Completo</legend>
+                        <%
+                            out.print("CEP: " + cep);
+                        %>
+                        <br>
+                        <br>
+                        <%
+                            out.print("Logradouro: " + logra);
+                        %>
+                        <br> 
+                        <br>
+                        <%
+                            out.print("Numero: " + numero);
+                        %>
+                        <br> 
+                        <br>
+                        <%
+                            out.print("Bairro: " + bairro);
+                        %>
+                        <br>
+                        <br>
+                        <%
+                            out.print("Cidade: " + cidade);
+                        %>
+                        <br>
+                        <br>
+                        <%
+                            out.print("Estado: " + estado);
+                        %>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: center;">
+                    <input type="submit" value="Cadastrar"/>
+                </td>
+            </tr>
         </table>
     </body>
 </html>
